@@ -1,0 +1,4 @@
+[flake8]
+exclude = .idea, .git, .env, .venv, env, venv, __pycache__
+max-complexity = 14
+max-line-length = 120
