@@ -24,6 +24,7 @@ urlpatterns = [
     path("", include("games.urls")),
     path("", include("news.urls")),
     path("", include("profiles.urls")),
+    path("", include("main_app.urls")),
 ]
 
 if settings.DEBUG:
