@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     "django_filters",
     "taggit",
     "social_django",
+    "games.apps.GamesConfig",
+    "news.apps.NewsConfig",
+    "profiles.apps.ProfilesConfig",
+    "main_app.apps.MainAppConfig",
 ]
 
 MIDDLEWARE = [
