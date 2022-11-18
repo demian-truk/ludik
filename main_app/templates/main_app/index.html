@@ -1,0 +1,48 @@
+{% extends "main_app/base.html" %}
+{% load news_tags %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      <div class="p-md-5 rounded-3 text-bg-dark">
+        <h1>👢⛎🌛🎐🎋 — лучший портал про игры во Вселенной</h1>
+        <p class="lead my-3">На нашем портале вы найдете множество обзоров и гайдов на различные игры, сможете принять обсуждение в интересующих вас темах, а также узнать последние новости игровой индустрии.</p>
+        <p class="mb-0">
+          <a href="{% url 'news' %}" class="text-white fw-bold">Читать свежие новости...</a>
+        </p>
+      </div>
+
+      <!-- POPULAR CONTENT -->
+      <div class="px-3 py-4">
+        <h1 class="pb-2 border-bottom">Популярное</h1>
+
+        <!-- POPULAR NEWS -->
+        <div class="py-4">
+          <div class="card overflow-hidden text-bg-dark rounded-3">
+            <div class="row">
+              {% get_most_commented_news as most_commented_news %}
+              {% for news in most_commented_news %}
+                <div class="col-6">
+                  <div class="image-text">
+                    <a href="{{ news.get_absolute_url }}">
+                      <img src="{{ news.image.url }}" alt="news_image" width="580">
+                    </a>
+                    <span class="image-text-style">
+                      <h5>{{ news.title }}</h5>
+                    </span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="p-3 text-center">
+              <h2 class="lh-1 fw-bold">Популярное в новостях</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endblock %}
