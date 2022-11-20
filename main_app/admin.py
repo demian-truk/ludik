@@ -22,6 +22,7 @@ class CommentAdmin(admin.ModelAdmin):
         "publication_status",
     )
     list_display_links = ("id", "news")
+    list_editable = ("publication_status",)
     search_fields = ("news__title", "user__username", "content")
     list_filter = ("time_create", "publication_status")
     raw_id_fields = ("user",)
