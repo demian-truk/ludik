@@ -1,0 +1,32 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          {% include "main_app/messages.html" %}
+          <h1 class="text-center mt-2">🎏🎗🎗🌛🅱🅰🌜🎋</h1>
+
+          <div class="card overflow-hidden my-4 rounded-3">
+            <form class="cardbody-color p-lg-5" method="POST">
+              {% csrf_token %}
+              <p class="text-center">Напишите нам и мы свяжемся с Вами в ближайшее время.</p>
+
+              {% for f in form %}
+                <p>{{ f }}</p>
+                <div class="form-error">{{ f.errors }}</div>
+              {% endfor %}
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-color w-75">Отправить</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endblock %}
