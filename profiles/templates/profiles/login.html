@@ -1,0 +1,45 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h1 class="text-center mt-2">💲🎐🌀🎵 🎐🎵</h1>
+
+          <div class="card overflow-hidden my-4 rounded-3">
+            <form class="cardbody-color p-lg-5" method="POST">
+              {% csrf_token %}
+              <div class="text-center">
+                <img src="https://pbs.twimg.com/profile_images/1491456226705960963/Y09EXQAq_400x400.jpg" class="profile-image-pic img-thumbnail rounded-circle my-3" alt="login">
+              </div>
+
+              {% for f in form %}
+                <p>{{ f }}</p>
+                <div class="form-error">{{ f.errors }}</div>
+              {% endfor %}
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-color w-75">Войти</button>
+              </div>
+
+              <p></p>
+              <div class="form-text text-center mb-4 text-dark">
+                <span>Не зарегистрированы? </span><a href="{% url 'register' %}" class="text-dark fw-bold">Создать новый аккаунт</a>
+              </div>
+
+              <div class="text-center">
+                <a class="login-google" href="{% url 'social:begin' 'google-oauth2' %}">
+                  <img class="login-google-img" src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA" alt="google" width="30px">
+                  <b>Войти через Google</b>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endblock %}
