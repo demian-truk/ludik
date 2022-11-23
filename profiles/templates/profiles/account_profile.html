@@ -1,0 +1,70 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      <h1><b>{{ title }}</b></h1>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <!-- USER PHOTO -->
+            <div class="col-md-3 pt-3">
+              {% if user.profile.photo %}
+                <img class="img-article-left thumb" width="300" src="{{ user.profile.photo.url }}">
+              {% endif %}
+            </div>
+
+            <!-- USER INFORMATION -->
+            <div class="col-md-9 pt-3">
+              <h3><b>{{ user.username }}</b></h3>
+              Последнее посещение: {{ user.last_login|date:"d-m-Y H:i" }}
+              <p><h4>Персональная информация</h4></p>
+              <p><b>Имя:</b> {{ user.first_name}}</p>
+              <p>
+                <b>Пол:</b>
+                {% if user.profile.gender %}
+                  {{ user.profile.gender }}
+                {% endif %}
+              </p>
+              <p>
+                <b>Дата рождения:</b>
+                {% if user.profile.date_of_birth %}
+                  {{ user.profile.date_of_birth|date:"d-m-Y" }}
+                {% endif %}
+              </p>
+              <b>Дата регистрации:</b> {{ user.profile.date_joined|date:"d-m-Y" }}
+            </div>
+          </div>
+
+          <!-- USER BIO -->
+          <hr>
+          <h4>О себе</h4>
+          <p>
+            {% if user.profile.bio %}
+              {{ user.profile.bio|linebreaks }}
+            {% else %}
+              ^_^
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <!-- USER FAVORITES -->
+      <h3 class="pt-4 text-center">Избранное</h3>
+
+      <div>
+        <ul class="nav justify-content-center">
+          <li><a href="#" class="btn">Игры</a></li>
+          <li><a href="#" class="btn">Новости</a></li>
+          <li><a href="#" class="btn">Обзоры</a></li>
+          <li><a href="#" class="btn">Гайды</a></li>
+          <li><a href="#" class="btn">Галерея</a></li>
+          <li><a href="#" class="btn">Форумы</a></li>
+        </ul>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endblock %}
