@@ -1,0 +1,48 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          {% include "main_app/messages.html" %}
+          <h1><b>{{ title }}</b></h1>
+          <hr>
+          Вы можете отредактировать свой аккаунт, используя следующую форму:
+
+          <div class="card my-4 overflow-hidden">
+            <form class="cardbody-color p-lg-5" method="POST">
+              {% csrf_token %}
+              <!-- USER EDIT FORM -->
+              {% for f in form %}
+                {{ f.label }}:
+                <p>{{ f }}</p>
+                <div class="form-error">{{ f.errors }}</div>
+              {% endfor %}
+
+              <!-- PROFILE EDIT FORM -->
+              {{ profile_form.date_of_birth.label}}:
+              <p>{{ profile_form.date_of_birth }}</p>
+              <div class="form-error">{{ profile_form.date_of_birth.errors }}</div>
+              {{ profile_form.gender.label}}:
+              <p>{{ profile_form.gender }}</p>
+              <div class="form-error">{{ profile_form.gender.errors }}</div>
+              {{ profile_form.photo.label}}:
+              <p>{{ profile_form.photo }}</p>
+              <div class="form-error">{{ profile_form.photo.errors }}</div>
+              {{ profile_form.bio.label}}:
+              <p>{{ profile_form.bio }}</p>
+              <div class="form-error">{{ profile_form.bio.errors }}</div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-color w-50">Сохранить изменения</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endblock %}
