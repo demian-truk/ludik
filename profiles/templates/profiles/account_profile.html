@@ -21,7 +21,7 @@
               <h3><b>{{ user.username }}</b></h3>
               Последнее посещение: {{ user.last_login|date:"d-m-Y H:i" }}
               <p><h4>Персональная информация</h4></p>
-              <p><b>Имя:</b> {{ user.first_name}}</p>
+              <p><b>Имя и фамилия:</b> {{ user.first_name}} {{ user.last_name}}</p>
               <p>
                 <b>Пол:</b>
                 {% if user.profile.gender %}
