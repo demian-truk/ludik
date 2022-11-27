@@ -1,0 +1,34 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      <h1><b>{{ title }}</b></h1>
+
+      <div class="row">
+        {% for p in page_obj %}
+          <div class="col-3">
+            <div class="card overflow-hidden">
+              {% if p.user.profile.photo %}
+                <img class="img-article-left thumb" src="{{ p.user.profile.photo.url }}" width="293">
+              {% endif %}
+
+              <div class="card-body">
+                <h4><b>{{ p.user.username }}</b></h4>
+                {% if p.user.profile.gender == "мужской" %}
+                  Был в сети: {{ p.user.last_login|date:"d-m-Y" }}
+                {% elif p.user.profile.gender == "женский" %}
+                  Была в сети: {{ p.user.last_login|date:"d-m-Y" }}
+                {% else %}
+                  Был(а) в сети: {{ p.user.last_login|date:"d-m-Y" }}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </td>
+</tr>
+{% endblock %}
