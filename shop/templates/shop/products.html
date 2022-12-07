@@ -1,0 +1,103 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <!-- SIDEBAR -->
+  <td valign="top" class="left-chapters">
+    <ul>
+      {% if category_selected == 0 %}
+        <li class="selected">Все</li>
+      {% else %}
+        <li><a href="{% url 'products' %}">Все</a></li>
+      {% endif %}
+
+      {% for c in cats %}
+        {% if c.product__count > 0 %}
+          {% if c.pk == category_selected %}
+            <li class="selected">{{ c.name }}</li>
+          {% else %}
+            <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </td>
+
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      {% include "main_app/messages.html" %}
+
+      <!-- SHOP BANNER -->
+      <div class="bg-dark py-4 rounded-3">
+        <div class="my-5">
+          <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Ludik shop</h1>
+            <p class="lead fw-normal text-white-50">Одежда и другие товары с игровой атрибутикой</p>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <!-- TITLE -->
+        <div class="col-10">
+          <h1><b>{{ title }}</b></h1>
+        </div>
+
+        <!-- CART -->
+        <div class="col-2 py-2 px-4">
+          <a href="{% url 'cart' %}">
+            <button class="btn btn-outline-dark" type="submit">
+              Корзина
+              <span class="badge bg-dark ms-1 rounded-pill">{{ cart.products.count }}</span>
+            </button>
+          </a>
+        </div>
+      </div>
+
+      <!-- PRODUCTS LIST -->
+      <ul class="list-articles">
+        <div class="row">
+          {% for product in products %}
+            <div class="col-4 py-1">
+              <div class="card">
+                <div class="card-body">
+                  <li>
+                    {% if product.image %}
+                      <a href="{{ product.get_absolute_url }}">
+                        <img class="img-product-left thumb" alt="product_image" src="{{ product.image.url }}">
+                      </a>
+                    {% endif %}
+
+                    <p>{{ product.name }}</p>
+
+                    <div class="row mb-2">
+                      <div class="col-9">
+                        <h3><strong>{{ product.price }} р.</strong></h3>
+                      </div>
+
+                      <div class="col-3">
+                        <a href="{% url 'add_to_cart' product_slug=product.slug %}">
+                          <button class="btn btn-outline-dark" type="submit">
+                            <img src="https://img.icons8.com/material-outlined/512/shopping-cart--v2.png" alt="cart" width="25">
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="article-panel">
+                      <p class="first">{{ product.category }}</p>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </ul>
+
+      {% include "main_app/pagination.html" %}
+    </div>
+  </td>
+</tr>
+{% endblock %}
