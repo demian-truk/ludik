@@ -31,7 +31,15 @@
 <!-- ABOUT THE PROJECT -->
 # About The Project
 
-There should have been a description of the project here :D
+The Ludik project is a website for storing and distributing information about games and everything related to them.
+
+<p>Here you can get information about the games you are interested in, find out the latest news of the gaming industry,
+view reviews, analyze guides or participate in the discussion of topics of interest.</p>
+
+<p>This project was created in order to consolidate the skills and abilities acquired during the training
+course «Python Developer» from the school of programming «TeachMeSkills».</p>
+
+Link to the course: https://teachmeskills.by/kursy-programmirovaniya/obuchenie-python-minsk
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
