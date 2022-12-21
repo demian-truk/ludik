@@ -1,0 +1,64 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      <div class="row">
+        <!-- BREADCRUMBS -->
+        <div class="col-10">
+          <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a class="link-style" href="{% url 'index' %}">Главная</a></li>
+              <li class="breadcrumb-item"><a class="link-style" href="{% url 'products' %}">Каталог товаров</a></li>
+              <li class="breadcrumb-item"><a class="link-style" href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- CART -->
+        <div class="col-2 px-4">
+          <a href="{% url 'cart' %}">
+            <button class="btn btn-outline-dark" type="submit">
+              Корзина
+              <span class="badge bg-dark ms-1 rounded-pill">{{ cart.products.count }}</span>
+            </button>
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- PRODUCT IMAGE -->
+        <div class="col-md-6">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="product_image" width="595">
+          {% endif %}
+        </div>
+
+        <!-- PRODUCT INFORMATION -->
+        <div class="col-md-6">
+          <div class="py-5 px-2">
+            <h1>{{ product.name }}</h1>
+            <p><h3>{{ product.price }} р.</h3>
+            <p>
+              {% autoescape off %}
+                {{ product.description|linebreaks }}
+              {% endautoescape %}
+            </p>
+
+            <hr>
+            <!-- ADD TO CART -->
+            <a href="{% url 'add_to_cart' product_slug=product.slug %}">
+              <button class="btn btn-outline-dark" type="submit">
+                Добавить в
+                <img src="https://img.icons8.com/material-outlined/512/shopping-cart--v2.png" alt="cart" width="25">
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endblock %}
