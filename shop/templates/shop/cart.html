@@ -1,0 +1,74 @@
+{% extends "main_app/base.html" %}
+
+{% block main %}
+<tr>
+  <td class="content">
+    <div class="px-4 rounded-3 shadow py-3">
+      {% if not cart.products.count %}
+        <h1><b>Корзина пуста</b></h1>
+      {% else %}
+        <h1><b>{{ title }}</b></h1>
+      {% endif %}
+
+      {% if cart.products.count %}
+        <table class="table">
+          <!-- TABLE HEADER -->
+          <thead>
+            <tr>
+              <th scope="col">Наименование</th>
+              <th scope="col" class="text-center">Изображение</th>
+              <th scope="col" class="text-center">Цена</th>
+              <th scope="col" class="text-center">Количество</th>
+              <th scope="col" class="text-center">Итоговая цена</th>
+              <th scope="col" class="text-center">Действие</th>
+            </tr>
+          </thead>
+
+          <!-- TABLE BODY -->
+          <tbody>
+            {% for item in cart.products.all %}
+              <tr>
+                <th scope="row">
+                  <a href="{{ item.product.get_absolute_url }}" class="link-style">{{ item.product.name }}</a>
+                </th>
+                <td class="text-center">
+                  <img src="{{ item.product.image.url }}" alt="cart_product_image" width="150">
+                </td>
+                <td class="text-center">{{ item.product.price }}</td>
+                <td class="text-center">
+                  <form action="{% url 'change_quantity' product_slug=item.product.slug %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" min="1" value="{{ item.quantity }}" name="quantity" class="text-center" style="max-width: 4rem">
+                    <button class="btn" type="submit">
+                      <img src="https://cdn-icons-png.flaticon.com/512/60/60961.png" alt="update" width="25">
+                    </button>
+                  </form>
+                </td>
+                <td class="text-center">{{ item.total_price }}</td>
+                <td class="text-center">
+                  <a href="{% url 'delete_from_cart' product_slug=item.product.slug %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/64/64498.png" alt="delete_from_cart" width="20">
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+
+            <tr class="text-center">
+              <td colspan="3"></td>
+              <td>Итого:</td>
+              <td><strong>{{ cart.total_price }} р.</strong></td>
+              <td>
+                <a href="{% url 'checkout' %}">
+                  <button type="submit" class="btn btn-danger">
+                    Перейти к оформлению
+                  </button>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+  </td>
+</tr>
+{% endblock %}
