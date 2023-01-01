@@ -134,7 +134,7 @@ class MakeOrderView(CartMixin, View):
             new_order.save()
             messages.success(
                 request,
-                "Спасибо за заказ! В ближайшее время наш менеджер Отдела продаж с Вами свяжется.",
+                "Спасибо за заказ! В ближайшее время наш менеджер с Вами свяжется.",
             )
 
             if request.user.is_authenticated:
