@@ -46,6 +46,13 @@
                 {{ product.description|linebreaks }}
               {% endautoescape %}
             </p>
+            {% if product.stock >= 1 %}
+              <img class="mb-1" src="https://i.ibb.co/z2hVv5x/in-stock-1.png" alt="in_stock" width="30">
+              <span class="px-1 text-success">В наличии {{ product.stock }} шт.</span>
+            {% else %}
+              <img class="mb-1" src="https://i.ibb.co/fHSDsV0/not-available-1.png" alt="not_available" width="30">
+              <span class="px-1 text-danger">Нет в наличии</span>
+            {% endif %}
 
             <hr>
             <!-- ADD TO CART -->
