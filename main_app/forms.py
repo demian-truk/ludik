@@ -11,6 +11,7 @@ class FeedbackForm(forms.ModelForm):
         ),
     )
     email = forms.EmailField(
+        max_length=100,
         widget=forms.EmailInput(
             attrs={"placeholder": "Электронная почта", "class": "form-control"}
         ),

@@ -36,7 +36,7 @@ class OrderForm(forms.ModelForm):
         label="Адрес доставки*",
     )
     comment = forms.CharField(
-        max_length=500,
+        max_length=1000,
         widget=forms.Textarea(
             attrs={
                 "placeholder": "Здесь Вы можете оставить любую информацию для Отдела продаж",

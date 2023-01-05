@@ -11,6 +11,7 @@ from .models import GENDER_CHOICES, Profile
 
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(
+        max_length=100,
         widget=forms.TextInput(
             attrs={"placeholder": "Введите логин", "class": "form-control"}
         ),
@@ -33,6 +34,7 @@ class RegisterUserForm(UserCreationForm):
 
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(
+        max_length=100,
         widget=forms.TextInput(
             attrs={"placeholder": "Введите логин", "class": "form-control"}
         ),
@@ -46,6 +48,7 @@ class LoginUserForm(AuthenticationForm):
 
 class UserEditForm(forms.ModelForm):
     first_name = forms.CharField(
+        max_length=50,
         widget=forms.TextInput(
             attrs={"placeholder": "Ваше красивое имя", "class": "form-control"}
         ),
@@ -53,6 +56,7 @@ class UserEditForm(forms.ModelForm):
         required=False,
     )
     last_name = forms.CharField(
+        max_length=50,
         widget=forms.TextInput(
             attrs={"placeholder": "Ваша прекрасная фамилия", "class": "form-control"}
         ),
@@ -60,6 +64,7 @@ class UserEditForm(forms.ModelForm):
         required=False,
     )
     email = forms.EmailField(
+        max_length=100,
         widget=forms.EmailInput(
             attrs={"placeholder": "example@email.com", "class": "form-control"}
         ),
@@ -90,6 +95,7 @@ class ProfileEditForm(forms.ModelForm):
         required=False,
     )
     bio = forms.CharField(
+        max_length=1000,
         widget=forms.Textarea(
             attrs={
                 "placeholder": "Здесь могло быть Ваше описание самого себя, "
