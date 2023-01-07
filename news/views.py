@@ -41,8 +41,9 @@ class ShowNews(DetailView, FormView):
             comment.save()
             messages.success(request, "Ваш комментарий отправлен на проверку")
             return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
-        else:
-            messages.error(request, "Ошибка добавления комментария")
+
+        messages.error(request, "Ошибка добавления комментария")
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
 
 
 class ShowNewsCategories(NewsCategoryDataMixin, ListView):
