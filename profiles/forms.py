@@ -79,7 +79,7 @@ class UserEditForm(forms.ModelForm):
 
 class ProfileEditForm(forms.ModelForm):
     date_of_birth = forms.DateField(
-        widget=forms.DateInput(attrs={"class": "form-control", "type": "date"}),
+        widget=forms.NumberInput(attrs={"class": "form-control", "type": "date"}),
         label="Дата рождения",
         required=False,
     )
