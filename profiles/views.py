@@ -97,7 +97,9 @@ class AccountPasswordChange(LoginRequiredMixin, TemplateView):
             messages.success(request, "Пароль успешно изменен")
             return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
         else:
-            messages.error(request, "Ошибка изменения пароля")
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+                return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
 
 
 def account_profile(request):
